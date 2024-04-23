@@ -28,6 +28,7 @@ export class ArticleComponent {
   roomStatus: boolean[] = Object.keys(this.roomsList).map(() => false);
   statusRoom: boolean = false; 
   iconActive: boolean = false; 
+  logs: string[] = [];
 
     // Stock the state of the btn 
     forceStates: { [key: string]: boolean } = {};
@@ -39,7 +40,6 @@ export class ArticleComponent {
     this.initializeForceStates()
     setInterval(() => {
       this.currentHour = parseInt(this.hourService.currentHour.split(':')[0],10);
-      console.log(this.currentHour)
       this.applyTimeBasedRules();
       this.applyTimeBasedRules()
     }, 1000);
@@ -55,20 +55,34 @@ export class ArticleComponent {
 
     // Automatic rules based on time
     if (currentHour >= 23){
-      this.forceStates['Piscine'] = false;  
+      this.forceStates['Piscine'] = false;
+      // this.addLogs("Piscine");
     }
+    
     this.forceStates['PAC'] = (currentHour >= 23 || currentHour < 7) ? false : true;
     if (currentHour === 7 && this.forceStates['Garage'] !== true) {
       this.forceStates['Garage'] = true;
+      // this.addLogs("Garage");
       // setTimeout(() => this.forceStates['Garage'] = false, 2 * 60 * 60 * 1000);
     } else if (currentHour == 9 && this.forceStates['Garage'] == true){
       this.forceStates['Garage'] = false;
+      // this.addLogs("Garage");
     }
   }
 
   toggleColor(room: string) {
     this.forceStates[room] = !this.forceStates[room];  // Toggle the button state
     this.roomsList[room] = this.forceStates[room] ? this.Disponible : this.Indisponible;  // Update room availability based on the button state
+
+    this.addLogs(room);
+    
+  }
+  
+  addLogs(room: string){
+    const message: string = this.hourService.currentHour + " - " + room + (!this.forceStates[room] ? " éteint(e) " : " allumé(e) ");
+    if (this.logs.indexOf(message) < 0){
+      this.logs.unshift(this.hourService.currentHour + " - " + room + (!this.forceStates[room] ? " éteint(e) " : " allumé(e) "));
+    }
   }
 
   getObjectKeys(obj: any): string[] {

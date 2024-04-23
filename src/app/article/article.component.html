@@ -31,3 +31,13 @@
     <app-hour></app-hour>
 
 </section>
+<section class="row">
+    <div class="col-12 logs-custom">
+        <div *ngFor="let msg of logs; let i=index">
+            <p>
+                <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> 
+                {{msg}}
+            </p>
+        </div>
+    </div>
+</section>    
