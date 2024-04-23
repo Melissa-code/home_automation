@@ -5,10 +5,10 @@
         <!-- Icones active -->
         <div class="icon-status">
             <div *ngFor="let room of getObjectKeys(roomsList); let i=index">
-                <div class="status-round" [ngClass]="{'active': roomsList[room]}"></div>
+                <div class="status-round" [ngClass]="{'active': forceStates[room]}"></div>
             </div>
         </div>
-
+       
         <!-- Rooms -->
         <div class="status-room">
             <div *ngFor="let roomName of getObjectKeys(roomsList)">

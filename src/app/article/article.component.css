@@ -11,13 +11,17 @@
     margin-right: 10rem;
 }
 
-.active {
+.status-round.active {
     background-color: green;
 }
 
-.status-round:not(.active) {
+.status-round.soucis {
+    background-color: blue; 
+}
+
+.status-round:not(.active):not(.soucis) {
     background-color: red; 
-  }
+}
 
 .force-btn button {
     margin-bottom: 1.4rem; 
