@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { HourComponent } from '../hour/hour.component';
 
 @Component({
   selector: 'app-article',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './article.component.css'
 })
 
-export class ArticleComponent implements OnInit {
+export class ArticleComponent {
 
   readonly Disponible: number = 1;
   readonly Indisponible: number = 2;
@@ -27,21 +28,6 @@ export class ArticleComponent implements OnInit {
   statusRoom: boolean = false; 
   iconActive: boolean = false; 
 
-  ngOnInit() {
-    // Vérifier périodiquement (toutes les minutes)
-    setInterval(() => {
-      this.checkTimeAndTurnOffLights();
-    }, 60000);
-  }
-  
-  checkTimeAndTurnOffLights() {
-    const currentTime = new Date();
-    const currentHour = currentTime.getHours();
-    if (currentHour >= 23) {
-      this.roomsList['Piscine'] = false;  // Éteindre la lumière de la piscine après 23h
-    }
-  }
-  
   // Stock the state of the btn 
   forceStates: { [key: string]: boolean } = {};
 
@@ -49,7 +35,6 @@ export class ArticleComponent implements OnInit {
    * All the states are false (red) except piscine & PAC
    */
   constructor() {
-    this.checkTimeAndTurnOffLights();
     Object.keys(this.roomsList).forEach(room => {
       if (room === "Piscine" || room === "PAC") {
         this.forceStates[room] = true; 
@@ -64,15 +49,11 @@ export class ArticleComponent implements OnInit {
    * @param string room 
    */
   toggleColor(room: string) {
-    if (!(room === 'Piscine' && new Date().getHours() >= 23)) { // Ne pas allumer la piscine après 23h
-      this.roomsList[room] = !this.roomsList[room];
-    }
     // Reverse the state of the btn 
     this.forceStates[room] = !this.forceStates[room];
     // Update the state of the room 
     this.roomsList[room] = this.forceStates[room] ? this.Disponible : this.Indisponible;
   }
-
   
   /**
    * Get all the rooms
@@ -83,3 +64,4 @@ export class ArticleComponent implements OnInit {
     return Object.keys(obj);
   }
 }
+
