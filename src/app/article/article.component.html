@@ -1,0 +1,35 @@
+ <!-- article -->
+<section class="row">
+    <div class="col-md-9 article">
+
+        <!-- Icones active -->
+        <div class="icon-status">
+            @for(room of roomsList; track room) {
+                <div [ngClass]="{'status-round': true, 'active': iconActive}" ></div>
+            }
+        </div>
+
+        <!-- Rooms -->
+        <div class="status-room">
+            @for (room of roomsList; track room) {
+                <div>
+                    <p class="room">{{ room }}</p><br>
+                </div>
+                }
+        </div>
+
+        <!-- Force buttons -->
+        <div class="force-btn">
+            <div *ngFor="let room of roomsList; let i=index">
+                <button class="btn btn-primary" (click)="toggleColor(i)">Forçage</button>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <!-- Display hour -->
+    <app-hour></app-hour>
+
+</section>

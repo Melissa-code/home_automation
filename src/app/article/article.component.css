@@ -1,0 +1,21 @@
+.article {
+    display: flex;
+}
+
+.status-round {
+    background-color: red;
+    width: 3rem;
+    height: 3rem; 
+    border-radius: 100%;
+    margin-bottom: 1.8rem; 
+    margin-right: 10rem;
+}
+
+.active {
+    background-color: green;
+}
+
+.force-btn button {
+    margin-bottom: 1.4rem; 
+    margin-left: 10rem;
+}
