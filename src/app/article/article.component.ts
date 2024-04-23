@@ -32,25 +32,37 @@ export class ArticleComponent {
     // Stock the state of the btn 
     forceStates: { [key: string]: boolean } = {};
 
+  currentHour: number;
+
   constructor(private hourService: HourService) {
-    this.applyTimeBasedRules();
-    setInterval(() => this.applyTimeBasedRules(), 60000); // Check rules every minute
+
+    this.initializeForceStates()
+    setInterval(() => {
+      this.currentHour = parseInt(this.hourService.currentHour.split(':')[0],10);
+      console.log(this.currentHour)
+      this.applyTimeBasedRules();
+      this.applyTimeBasedRules()
+    }, 1000);
   }
   initializeForceStates() {
     Object.keys(this.roomsList).forEach(room => {
-      this.forceStates[room] = (room === "Piscine" || room === "PAC"); // Initially true only for Piscine & PAC
+      this.forceStates[room] = (room === "" || room === ""); // Initially true only for Piscine & PAC
     });
   }
 
   private applyTimeBasedRules() {
-    const currentHour = new Date().getHours();  // Directly using Date object here
+    const currentHour = this.currentHour;  // Directly using Date object here
 
     // Automatic rules based on time
-    this.roomsList['Piscine'] = currentHour >= 23 ? this.Indisponible : this.Disponible;
-    this.roomsList['PAC'] = (currentHour >= 23 || currentHour < 7) ? this.Indisponible : this.Disponible;
-    if (currentHour === 7 && this.roomsList['Garage'] !== this.Disponible) {
-      this.roomsList['Garage'] = this.Disponible;
-      setTimeout(() => this.roomsList['Garage'] = this.Indisponible, 2 * 60 * 60 * 1000);
+    if (currentHour >= 23){
+      this.forceStates['Piscine'] = false;  
+    }
+    this.forceStates['PAC'] = (currentHour >= 23 || currentHour < 7) ? false : true;
+    if (currentHour === 7 && this.forceStates['Garage'] !== true) {
+      this.forceStates['Garage'] = true;
+      // setTimeout(() => this.forceStates['Garage'] = false, 2 * 60 * 60 * 1000);
+    } else if (currentHour == 9 && this.forceStates['Garage'] == true){
+      this.forceStates['Garage'] = false;
     }
   }
 
