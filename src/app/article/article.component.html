@@ -4,30 +4,28 @@
 
         <!-- Icones active -->
         <div class="icon-status">
-            @for(room of roomsList; track room) {
-                <div [ngClass]="{'status-round': true, 'active': iconActive}" ></div>
-            }
+            <div *ngFor="let room of getObjectKeys(roomsList); let i=index">
+                <div class="status-round" [ngClass]="{'active': roomsList[room]}"></div>
+            </div>
         </div>
 
         <!-- Rooms -->
         <div class="status-room">
-            @for (room of roomsList; track room) {
+            <div *ngFor="let roomName of getObjectKeys(roomsList)">
                 <div>
-                    <p class="room">{{ room }}</p><br>
+                    <p class="room">{{ roomName }}</p><br>
                 </div>
-                }
+            </div>
         </div>
-
+          
         <!-- Force buttons -->
         <div class="force-btn">
-            <div *ngFor="let room of roomsList; let i=index">
-                <button class="btn btn-primary" (click)="toggleColor(i)">Forçage</button>
+            <div *ngFor="let room of getObjectKeys(roomsList); let i=index">
+                <button class="btn btn-primary" (click)="toggleColor(room)">Forçage</button>
             </div>
         </div>
 
     </div>
-
-    
 
     <!-- Display hour -->
     <app-hour></app-hour>

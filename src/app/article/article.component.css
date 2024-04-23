@@ -15,6 +15,10 @@
     background-color: green;
 }
 
+.status-round:not(.active) {
+    background-color: red; 
+  }
+
 .force-btn button {
     margin-bottom: 1.4rem; 
     margin-left: 10rem;
