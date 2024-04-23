@@ -6,18 +6,22 @@ import { HourService } from '../hour.service';
   templateUrl: './hour.component.html',
   styleUrls: ['./hour.component.css']
 })
-export class HourComponent implements OnInit {
+export class HourComponent {
   currentHour: string;
 
   constructor(private hourService: HourService) {
-    this.currentHour = this.hourService.currentHour;
+    this.updateDisplay(); // Set initial time
+    setInterval(() => {
+      this.updateDisplay();
+    }, 60000); // Updates every minute
   }
 
-  ngOnInit(): void {
+  private updateDisplay() {
+    this.currentHour = this.hourService.currentHour;
   }
 
   addFortyMinutes() {
     this.hourService.addFortyMinutes();
-    this.currentHour = this.hourService.currentHour;
+    this.updateDisplay();
   }
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HourComponent } from '../hour/hour.component';
+import { HourService } from '../hour.service';
 
 @Component({
   selector: 'app-article',
@@ -27,38 +29,36 @@ export class ArticleComponent {
   statusRoom: boolean = false; 
   iconActive: boolean = false; 
 
-  // Stock the state of the btn 
-  forceStates: { [key: string]: boolean } = {};
+    // Stock the state of the btn 
+    forceStates: { [key: string]: boolean } = {};
 
-  /**
-   * All the states are false (red) except piscine & PAC
-   */
-  constructor() {
+  constructor(private hourService: HourService) {
+    this.applyTimeBasedRules();
+    setInterval(() => this.applyTimeBasedRules(), 60000); // Check rules every minute
+  }
+  initializeForceStates() {
     Object.keys(this.roomsList).forEach(room => {
-      if (room === "Piscine" || room === "PAC") {
-        this.forceStates[room] = true; 
-      } else {
-        this.forceStates[room] = false; 
-      }
+      this.forceStates[room] = (room === "Piscine" || room === "PAC"); // Initially true only for Piscine & PAC
     });
   }
 
-  /**
-   * Change the color of the status if the button is clicked
-   * @param string room 
-   */
-  toggleColor(room: string) {
-    // Reverse the state of the btn 
-    this.forceStates[room] = !this.forceStates[room];
-    // Update the state of the room 
-    this.roomsList[room] = this.forceStates[room] ? this.Disponible : this.Indisponible;
+  private applyTimeBasedRules() {
+    const currentHour = new Date().getHours();  // Directly using Date object here
+
+    // Automatic rules based on time
+    this.roomsList['Piscine'] = currentHour >= 23 ? this.Indisponible : this.Disponible;
+    this.roomsList['PAC'] = (currentHour >= 23 || currentHour < 7) ? this.Indisponible : this.Disponible;
+    if (currentHour === 7 && this.roomsList['Garage'] !== this.Disponible) {
+      this.roomsList['Garage'] = this.Disponible;
+      setTimeout(() => this.roomsList['Garage'] = this.Indisponible, 2 * 60 * 60 * 1000);
+    }
   }
-  
-  /**
-   * Get all the rooms
-   * @param obj 
-   * @returns obj
-   */
+
+  toggleColor(room: string) {
+    this.forceStates[room] = !this.forceStates[room];  // Toggle the button state
+    this.roomsList[room] = this.forceStates[room] ? this.Disponible : this.Indisponible;  // Update room availability based on the button state
+  }
+
   getObjectKeys(obj: any): string[] {
     return Object.keys(obj);
   }
