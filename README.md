@@ -147,3 +147,6 @@ Oceane, Gaspard and Melissa
 ## Licence
 
 MIT 
+
+
+![image](https://github.com/Melissa-code/home_automation/assets/94532496/4bed94b3-4472-4bd2-beec-37fa19520a37)
