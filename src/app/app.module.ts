@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ArticleComponent } from './article/article.component';
 import { HourComponent } from './hour/hour.component';
-import { LogsComponent } from './logs/logs.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +14,7 @@ import { LogsComponent } from './logs/logs.component';
     HeaderComponent,
     FooterComponent,
     ArticleComponent,
-    HourComponent,
-    LogsComponent
+    HourComponent
   ],
   imports: [
     BrowserModule,

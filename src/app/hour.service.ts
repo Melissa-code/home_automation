@@ -7,7 +7,7 @@ export class HourService {
   currentDate: Date = new Date();
   currentHour: string = `${this.currentDate.getHours()}:${this.currentDate.getMinutes()}`;
 
-  constructor() { }
+  constructor() { }   
 
   addFortyMinutes() {
     let currentHourInMinutes: number = parseInt(this.currentHour.split(':')[0]) * 60 + parseInt(this.currentHour.split(':')[1]);

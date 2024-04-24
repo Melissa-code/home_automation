@@ -41,32 +41,41 @@ export class ArticleComponent {
     setInterval(() => {
       this.currentHour = parseInt(this.hourService.currentHour.split(':')[0],10);
       this.applyTimeBasedRules();
-      this.applyTimeBasedRules()
-    }, 1000);
+    }, 1000); 
   }
   initializeForceStates() {
     Object.keys(this.roomsList).forEach(room => {
-      this.forceStates[room] = (room === "" || room === ""); // Initially true only for Piscine & PAC
+      this.forceStates[room] = false;
     });
   }
 
   private applyTimeBasedRules() {
-    const currentHour = this.currentHour;  // Directly using Date object here
+    const currentHour = this.currentHour;
 
     // Automatic rules based on time
-    if (currentHour >= 23){
+    if (currentHour >= 23 && this.forceStates['Piscine']){
       this.forceStates['Piscine'] = false;
-      // this.addLogs("Piscine");
+      this.addLogs("Piscine");
     }
     
-    this.forceStates['PAC'] = (currentHour >= 23 || currentHour < 7) ? false : true;
-    if (currentHour === 7 && this.forceStates['Garage'] !== true) {
+    
+    if ((currentHour >= 23 || currentHour < 7) && this.forceStates['PAC']){
+      this.forceStates['PAC'] = false;
+      this.addLogs('PAC');
+
+    } else if((currentHour < 23 && currentHour >= 7) && !this.forceStates['PAC']) {
+      this.forceStates['PAC'] = true;
+      this.addLogs('PAC');
+    }
+
+
+    if (currentHour === 7 && !this.forceStates['Garage']) {
       this.forceStates['Garage'] = true;
-      // this.addLogs("Garage");
-      // setTimeout(() => this.forceStates['Garage'] = false, 2 * 60 * 60 * 1000);
-    } else if (currentHour == 9 && this.forceStates['Garage'] == true){
+      this.addLogs("Garage");
+    
+    } else if (currentHour == 9 && this.forceStates['Garage']){
       this.forceStates['Garage'] = false;
-      // this.addLogs("Garage");
+      this.addLogs("Garage");
     }
   }
 
