@@ -23,11 +23,10 @@ The goal will be to perform the following actions and functionalities :
 2.  [Installation](#Installation)
 3.  [Run](#Run)
 4.  [Code scaffolding](#Code-scaffolding)
-5.  [Build](#Build)
-6.  [Further help](#Further-help)
-7.  [Build with](#Build-with)
-8.  [Authors](#Authors)
-9.  [Licence](#Licence)
+5.  [Further help](#Further-help)
+6.  [Build with](#Build-with)
+7.  [Authors](#Authors)
+8.  [Licence](#Licence)
 
 
 
@@ -56,9 +55,9 @@ The goal will be to perform the following actions and functionalities :
 `npm install`
 
 
-### If you prefer create a new project : 
+### If you prefer starting a new project : 
 
-1. `ng new domotique --no-strict --standalone=false` (-> select : CSS -> SSG select : no)
+1. `ng new domotique --no-strict --standalone=false` (-> select : CSS & -> SSG select : no)
 
 2. Install Bootstrap 3 : `npm install --save bootstrap@3`
 
