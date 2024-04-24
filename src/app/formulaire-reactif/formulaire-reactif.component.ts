@@ -1,16 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-formulaire-reactif',
   templateUrl: './formulaire-reactif.component.html',
-  styleUrl: './formulaire-reactif.component.css'
+  styleUrls: ['./formulaire-reactif.component.css']
 })
-export class FormulaireReactifComponent  {
-  user = { instruction: '' };
+export class FormulaireReactifComponent implements OnInit {
+  instruction: string = "";
+  instructions: any[] = [];
+
+  ngOnInit() {
+    this.loadInstructions(); 
+  }
+
+  loadInstructions() {
+    const existingData = localStorage.getItem('formData');
+    if (existingData) {
+      this.instructions = JSON.parse(existingData);
+    }
+  }
 
   onSubmit(form: any) {
     if (form.valid) {
-      console.log('Instruction:', form.value.instruction);
+      const newInstruction = form.value.instruction;
+      const isDuplicate = this.instructions.some(data => data.instruction === newInstruction);
+
+      if (!isDuplicate) {
+        this.instructions.push({ instruction: newInstruction });
+        localStorage.setItem('formData', JSON.stringify(this.instructions));
+      } else {
+        console.log('Duplicate instruction');
+      }
+
+      console.log('Instruction:', newInstruction);
+      form.resetForm();
     } else {
       console.log('Form is not valid');
     }

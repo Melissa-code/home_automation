@@ -1,7 +1,14 @@
-<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+<form #instructionForm="ngForm" (ngSubmit)="onSubmit(instructionForm)">
     <div class="form-group">
         <label for="instruction">Veuillez saisir une instruction:</label>
-        <input type="text" class="form-control" id="instruction" name="instruction" [(ngModel)]="user.instruction" required>
+        <input type="text" class="form-control" id="instruction" name="instruction" [(ngModel)]="instruction" required>
     </div>
     <button type="submit" class="btn btn-success">Soumettre</button>
 </form>
+
+<div class="container">
+    <h4>Instructions enregistrées :</h4>
+    <ul>
+      <li *ngFor="let item of instructions">{{ item.instruction }}</li>
+    </ul>
+</div>
