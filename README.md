@@ -3,9 +3,9 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
 
-The goal will be to perform the following actions and functionalities:
+The goal will be to perform the following actions and functionalities :
 
-- Create two buttons "Report a problem" and "Admin access".
+- Create two buttons "Report a problem (Signaler un problème)" and "Admin access (Accès administrateur)".
 
 - Display the time dynamically. It should be possible to increment the timer by 30 minutes each time the button is clicked.
 
@@ -16,14 +16,26 @@ The goal will be to perform the following actions and functionalities:
 - It should also be possible to record events (e.g., forcing the lighting of the pool, turning on the lights because a scenario is activated by the program...).
 
 
+
 ## Table of contents
 
+1.  [Prerequisites](#Prerequisites)
+2.  [Installation](#Installation)
+3.  [Run](#Run)
+4.  [Code scaffolding](#Code-scaffolding)
+5.  [Further help](#Further-help)
+6.  [Build with](#Build-with)
+7.  [Authors](#Authors)
+8.  [Licence](#Licence)
 
-## Prerequisites 
+
+
+## Prerequisites
 
 - Node.js and npm (node.js version 18.18.0, npm version version 9.8.1) [Node.js](https://nodejs.org/en/download)
 
 - Angular CLI (version 9.8.1) [Angular CLI](https://github.com/angular/angular-cli)
+
 
 
 ## Installation
@@ -43,6 +55,27 @@ The goal will be to perform the following actions and functionalities:
 `npm install`
 
 
+### If you prefer starting a new project : 
+
+1. `ng new domotique --no-strict --standalone=false` (-> select : CSS & -> SSG select : no)
+
+2. Install Bootstrap 3 : `npm install --save bootstrap@3`
+
+3. Copy the path in node_modules->bootstrap->dist->css->bootstrap.min.css
+
+4. Paste it in the angular.json file : 
+
+```line 37: 
+    "styles": [
+		"node_modules/bootstrap/dist/css/bootstrap.min.css",
+              	"src/styles.css"
+            ],
+```
+
+5. Stop and restart the server 
+
+
+
 ## Run 
 
 1. Start the local web server and the browser : 
@@ -51,34 +84,32 @@ Run `ng serve --open` for a dev server.
 
 Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-2. To stop :
 
- press both `ctrl + C`
+2. Stop it :
+
+Press both `ctrl + C`
+
 
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component, for the project :
 
+- `ng generate component header`
+- `ng generate component footer`
+- `ng generate component article`
+- `ng generate component hour`
 
-## Build
+You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `ng generate service hour`
 
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
 
 
 ## Build with 
@@ -98,11 +129,24 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - GitHub [GitHub](https://github.com/)
 
+- Plugin for Visual Sudio Code : Angular Language Service
+
+
 ### IDE 
 
 - Visual Studio Code [VSCode](https://code.visualstudio.com/)
 
 
+
 ## Authors 
 
 Oceane, Gaspard and Melissa
+
+
+
+## Licence
+
+MIT 
+
+
+![image](https://github.com/Melissa-code/home_automation/assets/94532496/4bed94b3-4472-4bd2-beec-37fa19520a37)
