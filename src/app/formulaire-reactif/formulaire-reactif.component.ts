@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './formulaire-reactif.component.css'
 })
 export class FormulaireReactifComponent  {
-  user = { instruction: '' };
+  instruction: string = "";
 
   onSubmit(form: any) {
     if (form.valid) {
