@@ -16,6 +16,17 @@ The goal will be to perform the following actions and functionalities :
 - It should also be possible to record events (e.g., forcing the lighting of the pool, turning on the lights because a scenario is activated by the program...).
 
 
+### BONUS
+
+- Create another web page Instructions : add a button in the header that when clicked :
+
+- allows the user to add specific instructions in a form, 
+
+- stores these instructions in a JSON file, 
+
+- displays the added instructions and the content of the JSON file on the page.
+
+
 
 ## Table of contents
 
