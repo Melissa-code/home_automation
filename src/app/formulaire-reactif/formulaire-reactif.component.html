@@ -5,3 +5,10 @@
     </div>
     <button type="submit" class="btn btn-success">Soumettre</button>
 </form>
+
+<div class="container">
+    <h4>Instructions enregistrées :</h4>
+    <ul>
+      <li *ngFor="let item of instructions">{{ item.instruction }}</li>
+    </ul>
+</div>
