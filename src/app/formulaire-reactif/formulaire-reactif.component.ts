@@ -30,6 +30,7 @@ export class FormulaireReactifComponent implements OnInit {
         localStorage.setItem('formData', JSON.stringify(this.instructions));
       } else {
         console.log('Duplicate instruction');
+        alert("Cette instruction existe déjà. Veuillez en saisir une autre.");
       }
 
       console.log('Instruction:', newInstruction);
@@ -37,5 +38,10 @@ export class FormulaireReactifComponent implements OnInit {
     } else {
       console.log('Form is not valid');
     }
+  }
+
+  deleteInstruction(index: number) {
+    this.instructions.splice(index, 1);
+    localStorage.setItem('formData', JSON.stringify(this.instructions));
   }
 }

@@ -1,0 +1,10 @@
+.glyphicon-remove-circle {
+    color: red;  
+}
+
+.btn-remove-instruction {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    float: right;
+}
