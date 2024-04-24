@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ArticleComponent } from './article/article.component';
 import { HourComponent } from './hour/hour.component';
 import { FormulaireReactifComponent } from './formulaire-reactif/formulaire-reactif.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormulaireReactifComponent } from './formulaire-reactif/formulaire-reac
     FooterComponent,
     ArticleComponent,
     HourComponent,
-    FormulaireReactifComponent
+    FormulaireReactifComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
