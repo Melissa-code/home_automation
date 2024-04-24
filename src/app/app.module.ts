@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ArticleComponent } from './article/article.component';
 import { HourComponent } from './hour/hour.component';
+import { FormulaireReactifComponent } from './formulaire-reactif/formulaire-reactif.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HourComponent } from './hour/hour.component';
     HeaderComponent,
     FooterComponent,
     ArticleComponent,
-    HourComponent
+    HourComponent,
+    FormulaireReactifComponent
   ],
   imports: [
     BrowserModule,
