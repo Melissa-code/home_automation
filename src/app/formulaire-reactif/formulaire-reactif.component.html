@@ -1,1 +1,7 @@
-<p>formulaire-reactif works!</p>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <div class="form-group">
+        <label for="instruction">Veuillez saisir une instruction:</label>
+        <input type="text" class="form-control" id="instruction" name="instruction" [(ngModel)]="user.instruction" required>
+    </div>
+    <button type="submit" class="btn btn-success">Soumettre</button>
+</form>

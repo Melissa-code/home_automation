@@ -5,15 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './formulaire-reactif.component.html',
   styleUrl: './formulaire-reactif.component.css'
 })
-export class FormulaireReactifComponent {
+export class FormulaireReactifComponent  {
+  user = { instruction: '' };
 
-  user = {
-    name: "",
-    email: ""
+  onSubmit(form: any) {
+    if (form.valid) {
+      console.log('Instruction:', form.value.instruction);
+    } else {
+      console.log('Form is not valid');
+    }
   }
-
-  onSubmit(form: any){
-    console.log("User:", form.value);
-  }
-
 }
