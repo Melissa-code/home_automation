@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class FormulaireReactifComponent {
 
+  user = {
+    name: "",
+    email: ""
+  }
+
+  onSubmit(form: any){
+    console.log("User:", form.value);
+  }
+
 }
