@@ -40,6 +40,19 @@ export class FormulaireReactifComponent implements OnInit {
     }
   }
 
+  downloadJSON() {
+    const data = JSON.stringify(this.instructions);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'instructions.json';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  }
+
   deleteInstruction(index: number) {
     this.instructions.splice(index, 1);
     localStorage.setItem('formData', JSON.stringify(this.instructions));
